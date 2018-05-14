@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="comment">
+
+    <!-- 쿼리문 작성 -->
+
+    <select id="getCmt" parameterType="int" resultType="kr.co.bit.vo.CommentVO">
+       select c.CMTNO,c.POSTNO,c.USERNO,c.CMTCONTENT,c.REGDATE,u.USERNAME
+       from COMMENTS c, USERS u
+       where c.USERNO=u.USERNO and c.POSTNO=#{postNo} order by c.CMTNO asc
+    </select>
+
+    <insert id="addCmt" parameterType="kr.co.bit.vo.CommentVO">
+        <selectKey keyProperty="cmtNo" resultType="int" order="BEFORE">
+            select SEQ_COMMENTS_NO.nextval from dual
+        </selectKey>
+        insert into COMMENTS values (#{cmtNo},#{postNo},#{userNo},#{cmtContent},sysdate)
+    </insert>
+
+    <select id="oneCmt" parameterType="int" resultType="kr.co.bit.vo.CommentVO">
+        select c.CMTNO,c.POSTNO,c.USERNO,c.CMTCONTENT,c.REGDATE,u.USERNAME
+       from COMMENTS c, USERS u
+       where c.USERNO=u.USERNO and c.CMTNO=#{cmtNo}
+    </select>
+
+    <delete id="delCmt" parameterType="int">
+        delete from COMMENTS where CMTNO=#{cmtNo}
+    </delete>
+    <!--<update id="식별자" parameterType="기본자료형 또는 vo">-->
+    <!--</update>-->
+
+    <!--<delete id="식별자" parameterType="기본자료형 또는 vo">-->
+    <!--</delete>-->
+
+
+</mapper>

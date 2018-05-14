@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="users">
+
+    <!-- 쿼리문 작성 -->
+    <insert id="join" parameterType="kr.co.bit.vo.UserVO">
+    insert into USERS values (SEQ_USERS_NO.nextval,#{id},#{userName},#{password},sysdate)
+    </insert>
+
+    <insert id="createblog" parameterType="map">
+    insert into BLOG values (#{id},#{blogtitle},#{logofile})
+    </insert>
+
+    <insert id="createcategory" parameterType="kr.co.bit.vo.UserVO">
+        insert into CATEGORY values (SEQ_CATEGORY_NO.nextval,#{id},'미분류','기본으로 만들어지는 카테고리 입니다.',sysdate)
+    </insert>
+
+    <select id="login" parameterType="map" resultType="kr.co.bit.vo.UserVO">
+        select userno,id,username,joindate from USERS where id=#{id} and PASSWORD=#{password}
+    </select>
+
+    <select id="idcheck" parameterType="String" resultType="String">
+        select id from USERS where id = #{id}
+    </select>
+
+    <select id="searchKWD" parameterType="String" resultType="kr.co.bit.vo.SearchKWD">
+        select USERNAME from USERS where USERNAME like '%'||#{kwd}||'%'
+    </select>
+
+    <!--<update id="식별자" parameterType="기본자료형 또는 vo">-->
+    <!--</update>-->
+
+    <!--<delete id="식별자" parameterType="기본자료형 또는 vo">-->
+    <!--</delete>-->
+
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+
+    <!-- 쿼리문 작성 -->
+
+    <select id="main" parameterType="String" resultType="kr.co.bit.vo.BlogVO">
+        select CATENAME,CATENO from CATEGORY where id=#{id} order by cateno desc
+    </select>
+
+    <select id="getList" parameterType="String" resultType="kr.co.bit.vo.CategoryVO">
+        select * from CATEGORY where id=#{id} order by REGDATE asc
+    </select>
+
+    <insert id="insert" parameterType="kr.co.bit.vo.CategoryVO">
+        <selectKey keyProperty="cateNo" resultType="int" order="BEFORE">
+        <![CDATA[
+            select SEQ_CATEGORY_NO.nextval from dual
+            ]]>
+        </selectKey>
+        <![CDATA[
+        insert into category values (#{cateNo},#{id},#{cateName},#{description},sysdate)
+        ]]>
+    </insert>
+
+    <select id="addGet" parameterType="int" resultType="kr.co.bit.vo.CategoryVO">
+        select * from CATEGORY where CATENO=#{cateNo}
+    </select>
+
+    <delete id="delete" parameterType="map">
+        delete from CATEGORY where CATENO=#{cateNo}
+    </delete>
+
+    <select id="mainPage" parameterType="String" resultType="kr.co.bit.vo.CategoryVO">
+        select * from CATEGORY where id=#{id} order by cateno desc
+    </select>
+    <!--<update id="식별자" parameterType="기본자료형 또는 vo">-->
+    <!--</update>-->
+
+    <!--<delete id="식별자" parameterType="기본자료형 또는 vo">-->
+    <!--</delete>-->
+
+
+</mapper>

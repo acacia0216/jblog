@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="post">
+
+    <!-- 쿼리문 작성 -->
+
+    <select id="postCount" parameterType="int" resultType="int">
+        select count(*) from POST where CATENO=#{cateNo}
+    </select>
+
+    <insert id="write" parameterType="kr.co.bit.vo.PostVO">
+        insert into POST values (SEQ_POST_NO.nextval,#{cateNo},#{postTitle},#{postContent},sysdate)
+    </insert>
+
+    <select id="mainPage" parameterType="map" resultType="kr.co.bit.vo.PostVO">
+        <![CDATA[
+        select * from(
+        select Rownum rnum, temp.* from(select POSTNO,CATENO,POSTTITLE,POSTCONTENT,REGDATE
+        from POST where CATENO=#{cateNo} order by POSTNO desc) temp)
+        where #{startRnum} < rnum and rnum <= #{endRnum}
+        ]]>
+    </select>
+
+    <select id="getPostOne" parameterType="int" resultType="kr.co.bit.vo.PostVO">
+        select * from POST where POSTNO=#{postNo}
+    </select>
+    <!--<update id="식별자" parameterType="기본자료형 또는 vo">-->
+    <!--</update>-->
+
+    <!--<delete id="식별자" parameterType="기본자료형 또는 vo">-->
+    <!--</delete>-->
+
+
+</mapper>
