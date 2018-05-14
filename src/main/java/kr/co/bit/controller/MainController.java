@@ -11,13 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
+@RequestMapping(value = "/")
 public class MainController {
     @Autowired
     BlogService blogService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String main() {
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String main(Model model) {
         System.out.println("메인 들어옴");
+        model.addAttribute("check","check");
         return "main/index";
     }
 

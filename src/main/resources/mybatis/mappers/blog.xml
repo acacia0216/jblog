@@ -26,7 +26,7 @@
     </select>
 
     <select id="searchKWD" parameterType="String" resultType="kr.co.bit.vo.SearchKWD">
-        select BLOGTITLE from BLOG where BLOGTITLE like '%'||#{kwd}||'%'
+        select BLOGTITLE,ID from BLOG where BLOGTITLE like '%'||#{kwd}||'%'
     </select>
     <!--<update id="식별자" parameterType="기본자료형 또는 vo">-->
     <!--</update>-->

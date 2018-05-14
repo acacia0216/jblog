@@ -214,13 +214,14 @@ public class BlogService {
         Map<String,Object> map = new HashMap<>();
         if (which.equals("blog-title")) {
             blogList = blogDAO.searchKWD(keyword);
+        System.out.println("블로그제목 : "+blogList.size());
         } else if (which.equals("blog-user")) {
             userList = userDAO.searchKWD(keyword);
+        System.out.println("블로거 : "+userList.size());
         }
         map.put("blogList",blogList);
         map.put("userList",userList);
-        System.out.println("블로그제목 : "+blogList.size());
-        System.out.println("블로거 : "+userList.size());
+        map.put("keyword",keyword);
         return map;
     }
 }

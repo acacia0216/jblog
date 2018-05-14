@@ -3,15 +3,15 @@ package kr.co.bit.vo;
 public class SearchKWD {
     private String kwd;
     private String blogTitle;
-    private String userName;
+    private String id;
 
     public SearchKWD() {
     }
 
-    public SearchKWD(String kwd, String blogTitle, String userName) {
+    public SearchKWD(String kwd, String blogTitle, String id) {
         this.kwd = kwd;
         this.blogTitle = blogTitle;
-        this.userName = userName;
+        this.id = id;
     }
 
     public String getKwd() {
@@ -30,12 +30,12 @@ public class SearchKWD {
         this.blogTitle = blogTitle;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getId() {
+        return id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SearchKWD {
         return "SearchKWD{" +
                 "kwd='" + kwd + '\'' +
                 ", blogTitle='" + blogTitle + '\'' +
-                ", userName='" + userName + '\'' +
+                ", id='" + id + '\'' +
                 '}';
     }
 }

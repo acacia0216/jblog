@@ -25,7 +25,7 @@
     </select>
 
     <select id="searchKWD" parameterType="String" resultType="kr.co.bit.vo.SearchKWD">
-        select USERNAME from USERS where USERNAME like '%'||#{kwd}||'%'
+       select id from USERS where id like '%'||#{kwd}||'%'
     </select>
 
     <!--<update id="식별자" parameterType="기본자료형 또는 vo">-->
