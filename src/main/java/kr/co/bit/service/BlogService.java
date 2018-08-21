@@ -173,7 +173,7 @@ public class BlogService {
         boolean next = false;
         if (endPageBtnNo * listCnt < totalCount) {
             next = true;
-        } else {
+        } else {//마지막 페이지 번호가 충분하지 
             endPageBtnNo = (int) (Math.ceil(totalCount / (double) listCnt));
         }
 
